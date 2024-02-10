@@ -1,23 +1,13 @@
-"use client";
-import {
-	AspectRatio,
-	Avatar,
-	Box,
-	Card,
-	Container,
-	Grid,
-	Heading,
-	Inset,
-	Flex,
-	Quote,
-	Select,
-	Table,
-	Tabs,
-	Text,
-} from "@radix-ui/themes";
-import Image from "next/image";
+import { Container, Flex, Quote, Text } from "@radix-ui/themes";
 
-export default function Home() {
+import TeamInfo from "./teaminfo";
+import TeamHeader from "./teamheader";
+
+import { prisma } from "@/lib/db";
+
+export default async function Home() {
+	const teams = await prisma.team.findMany();
+
 	return (
 		<main className="flex min-h-screen font-sans flex-col items-center justify-between p-24">
 			<Container size="4">
@@ -28,7 +18,14 @@ export default function Home() {
 					</Text>
 				</Flex>
 				<Flex direction="column" gap="8">
-					<Tabs.Root defaultValue="rosters">
+					<ul>
+						{teams.map((team) => (
+							<li key={team.id}>{team.prettyName}</li>
+						))}
+					</ul>
+					<TeamHeader />
+					<TeamInfo />
+					{/* <Tabs.Root defaultValue="rosters">
 						<Tabs.List size="2">
 							<Tabs.Trigger value="rosters">Rosters</Tabs.Trigger>
 							<Tabs.Trigger value="leaderboards">Leaderboards</Tabs.Trigger>
@@ -37,83 +34,8 @@ export default function Home() {
 
 						<Box pb="2">
 							<Tabs.Content value="rosters">
-								<Flex
-									width="100%"
-									align="center"
-									justify="between"
-									style={{ background: "var(--red-a2)" }}
-									py="6"
-									px="4"
-									mt="4"
-								>
-									<Flex gap="4" align="center">
-										<Box width="9">
-											<AspectRatio ratio={16 / 9}>
-												<Image
-													src="/ari.png"
-													alt="team logo"
-													fill
-													style={{
-														objectFit: "cover",
-														borderRadius: "var(--radius-2)",
-													}}
-												/>
-											</AspectRatio>
-										</Box>
-										<Heading trim="both" size="8">
-											Arizona Cardinals
-										</Heading>
-									</Flex>
-
-									<Select.Root size="3" defaultValue="arizona">
-										<Select.Trigger variant="classic" />
-										<Select.Content variant="soft">
-											<Select.Item value="arizona">
-												Arizona Cardinals
-											</Select.Item>
-											<Select.Item value="atlanta">Atlanta Falcons</Select.Item>
-										</Select.Content>
-									</Select.Root>
-								</Flex>
-
+								<TeamInfo />
 								<Flex direction="column" gap="4" mt="6">
-									<Grid columns="3" gap="4">
-										<Card size="1" style={{ width: 350 }}>
-											<Flex gap="3" align="center">
-												<Avatar
-													size="3"
-													radius="full"
-													fallback="p"
-													color="gold"
-												/>
-												<Box>
-													<Text as="div" size="2" weight="bold">
-														General manager
-													</Text>
-													<Text as="div" color="bronze" size="2">
-														@pennywise
-													</Text>
-												</Box>
-											</Flex>
-										</Card>
-										<Card variant="classic">
-											<Text as="div" size="2" weight="bold">
-												Offensive Playbook
-											</Text>
-											<Text as="div" color="bronze" size="2">
-												Seattle Seahawks (3-4)
-											</Text>
-										</Card>
-										<Card variant="surface">
-											<Text as="div" size="2" weight="bold">
-												Defensive Playbook
-											</Text>
-											<Text as="div" color="bronze" size="2">
-												Cincinnati Bengals
-											</Text>
-										</Card>
-									</Grid>
-
 									<Flex direction="column" gap="6" mt="6">
 										<Heading trim="both" size="6">
 											Depth Chart
@@ -206,7 +128,7 @@ export default function Home() {
 								<Text size="2">Coming soon</Text>
 							</Tabs.Content>
 						</Box>
-					</Tabs.Root>
+					</Tabs.Root> */}
 				</Flex>
 			</Container>
 		</main>

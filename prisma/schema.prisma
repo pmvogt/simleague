@@ -69,7 +69,8 @@ model Team {
   name                NFLTeam
   prettyName          String
   division            Division
-  logoUrl             String
+  logoUrl             String?
+  bgColor             String?
   gmId                Int      @unique
   gm                  Manager  @relation(fields: [gmId], references: [id])
   offensivePlaybookId Int
@@ -79,6 +80,8 @@ model Team {
   defensivePlaybook   Playbook @relation("DefensivePlaybook", fields: [defensivePlaybookId], references: [id])
   defensiveScheme     String?
   players             Player[]
+  homeGames   Game[]   @relation("HomeGames")
+  awayGames   Game[]   @relation("AwayGames")
 }
 
 model Manager {
@@ -111,4 +114,26 @@ model Player {
   teamId    Int?
   team      Team?            @relation(fields: [teamId], references: [id])
   positions PlayerPosition[]
+}
+
+model Game {
+  id          Int      @id @default(autoincrement())
+  date        DateTime
+  homeTeamId  Int
+  awayTeamId  Int
+  homeTeam    Team     @relation(name: "HomeGames", fields: [homeTeamId], references: [id])
+  awayTeam    Team     @relation(name: "AwayGames", fields: [awayTeamId], references: [id])
+  homeScore   Int
+  awayScore   Int
+  week        Int?
+  gameStats    GameStat[]
+}
+
+model GameStat {
+  id        Int    @id @default(autoincrement())
+  gameId    Int
+  game      Game   @relation(fields: [gameId], references: [id])
+  touchdowns    Int
+  passYards     Int
+  rushYards     Int
 }

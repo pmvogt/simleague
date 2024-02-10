@@ -1,0 +1,3 @@
+- [] CDN for logo images
+- [] Add a `favicon.ico` to the root of the site
+- [] get data from somewhere on server, pass to client components (e.g. `<TeamSelect options={team.prettyName}>)
