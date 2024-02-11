@@ -30,7 +30,7 @@ export default function TeamHeader() {
 					</AspectRatio>
 				</Box>
 				<Heading trim="both" size="8">
-					Arizona Cardinals
+					team.prettyName
 				</Heading>
 				{/* <TeamSelect /> */}
 			</Flex>

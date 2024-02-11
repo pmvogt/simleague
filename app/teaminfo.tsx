@@ -8,10 +8,10 @@ export default async function TeamInfo() {
 					<Avatar size="3" radius="full" fallback="p" color="gold" />
 					<Box>
 						<Text as="div" size="2" weight="bold">
-							Team pretty name
+							Manager
 						</Text>
 						<Text as="div" color="bronze" size="2">
-							Team manager
+							Team.manager
 						</Text>
 					</Box>
 				</Flex>
@@ -21,7 +21,7 @@ export default async function TeamInfo() {
 					Offensive Playbook
 				</Text>
 				<Text as="div" color="bronze" size="2">
-					team offensive playbook
+					team.offensivePlaybook
 				</Text>
 			</Card>
 			<Card variant="surface">
@@ -29,7 +29,7 @@ export default async function TeamInfo() {
 					Defensive Playbook
 				</Text>
 				<Text as="div" color="bronze" size="2">
-					team offensive playbook
+					team defensive.Playbook
 				</Text>
 			</Card>
 		</Grid>

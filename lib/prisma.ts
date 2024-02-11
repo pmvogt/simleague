@@ -1,3 +1,5 @@
+// standard prisma client setup - connects the app to the database
+
 import { PrismaClient } from "@prisma/client";
 
 const globalForPrisma = globalThis as unknown as {

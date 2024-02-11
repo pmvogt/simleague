@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { Theme } from "@radix-ui/themes";
+import { Theme, Flex, Container, Text, Quote } from "@radix-ui/themes";
 import { Inter } from "next/font/google";
 
 import "@radix-ui/themes/styles.css";
@@ -33,7 +33,15 @@ export default function RootLayout({
 					grayColor="sand"
 					panelBackground="translucent"
 				>
-					{children}
+					<Container size="4">
+						<Flex align="center" justify="between">
+							<h1>🏈 SpringSim2024 🏈</h1>
+							<Text size="1" color="brown">
+								<Quote>⚡Autistic lightning⚡</Quote>
+							</Text>
+						</Flex>
+						{children}
+					</Container>
 				</Theme>
 			</body>
 		</html>
