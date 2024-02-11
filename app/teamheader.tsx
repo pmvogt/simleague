@@ -32,7 +32,7 @@ export default function TeamHeader() {
 				<Heading trim="both" size="8">
 					team.prettyName
 				</Heading>
-				{/* <TeamSelect /> */}
+				<TeamSelect />
 			</Flex>
 		</Flex>
 	);

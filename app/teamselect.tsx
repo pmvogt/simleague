@@ -1,18 +1,16 @@
 "use client";
-import { Select } from "@radix-ui/themes";
+import React, { useState, useEffect } from "react";
 
-export default function TeamSelect({
-	children,
-}: {
-	children: React.ReactNode;
-}) {
+export default function TeamSelect() {
 	return (
-		<Select.Root size="3" defaultValue="arizona">
-			<Select.Trigger variant="classic" />
-			<Select.Content variant="soft">
-				<Select.Item value="arizona">Arizona Cardinals</Select.Item>
-				<Select.Item value="atlanta">Atlanta Falcons</Select.Item>
-			</Select.Content>
-		</Select.Root>
+		<div>
+			<select>
+				{teams.map((team) => (
+					<option key={team.id} value={team.id}>
+						{team.name}
+					</option>
+				))}
+			</select>
+		</div>
 	);
 }
