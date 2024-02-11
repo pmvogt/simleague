@@ -6,16 +6,15 @@ import TeamHeader from "./teamheader";
 import { prisma } from "@/lib/prisma";
 
 export default async function Home() {
-	const teams = await prisma.team.findMany();
 
 	return (
 		<main className="flex min-h-screen font-sans flex-col items-center justify-between p-24">
 			<Flex direction="column" gap="8">
-				<ul>
+				{/* <ul>
 					{teams.map((team) => (
 						<li key={team.id}>{team.prettyName}</li>
 					))}
-				</ul>
+				</ul> */}
 				<TeamHeader />
 				<TeamInfo />
 				{/* <Tabs.Root defaultValue="rosters">
