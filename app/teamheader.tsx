@@ -2,15 +2,21 @@
 import { Flex, Box, Heading, AspectRatio } from "@radix-ui/themes";
 
 import Image from "next/image";
-import TeamSelect from "./teamselect";
 
-export default function TeamHeader() {
+export default function TeamHeader({
+	team,
+}: {
+	team: {
+		bgColor: any;
+		prettyName: string;
+	};
+}) {
 	return (
 		<Flex
 			width="100%"
 			align="center"
 			justify="between"
-			style={{ background: "var(--red-a2)" }}
+			style={{ background: `${team.bgColor}` }}
 			py="6"
 			px="4"
 			mt="4"
@@ -29,10 +35,7 @@ export default function TeamHeader() {
 						/>
 					</AspectRatio>
 				</Box>
-				<Heading trim="both" size="8">
-					team.prettyName
-				</Heading>
-				<TeamSelect />
+				<Heading size="8">{team.prettyName}</Heading>
 			</Flex>
 		</Flex>
 	);

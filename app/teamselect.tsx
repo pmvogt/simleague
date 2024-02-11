@@ -1,51 +1,28 @@
+// TeamSelect.tsx
 "use client";
-import React, { useState, useEffect } from "react";
+import React from "react";
+// import { Select } from "@radix-ui/react-select";
 
-// Define the Team interface
 interface Team {
-  id: number;
-  prettyName: string;
+	id: number;
+	prettyName: string;
 }
 
-// Update the getTeams function to type the fetched data
-const getTeams = async (): Promise<Team[]> => {
-  const response = await fetch("/api/teams");
-  const data = await response.json();
-  console.log({ data });
-  return data; // Make sure this matches the structure returned by your API
-};
+interface TeamSelectProps {
+	teams: Team[];
+	onTeamChange: (teamId: string) => void;
+}
 
-export default function TeamSelect() {
-  // Use the Team[] type for the teams state
-  const [teams, setTeams] = useState<Team[]>([]);
-  const [selectedTeam, setSelectedTeam] = useState<string>("");
-
-  useEffect(() => {
-    getTeams()
-      .then((teams) => {
-        setTeams(teams);
-        if (teams.length > 0) {
-          setSelectedTeam(teams[0].id.toString());
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching teams:", error);
-      });
-  }, []);
-
-  const handleSelectionChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedTeam(event.target.value);
-  };
-
-  return (
-    <div>
-      <select onChange={handleSelectionChange} value={selectedTeam}>
-        {teams.map((team) => (
-          <option key={team.id} value={team.id}>
-            {team.prettyName}
-          </option>
-        ))}
-      </select>
-    </div>
-  );
+export default function TeamSelect({ teams, onTeamChange }: TeamSelectProps) {
+	return (
+		<div>
+			<select onChange={(e) => onTeamChange(e.target.value)}>
+				{teams.map((team) => (
+					<option key={team.id} value={team.id}>
+						{team.prettyName}
+					</option>
+				))}
+			</select>
+		</div>
+	);
 }

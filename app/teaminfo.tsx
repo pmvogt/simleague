@@ -1,6 +1,36 @@
 import { Avatar, Box, Card, Flex, Grid, Text } from "@radix-ui/themes";
 
-export default async function TeamInfo() {
+interface TeamInfoProps {
+	team: {
+		id: number;
+		prettyName: string;
+		logoUrl?: string;
+		gm: {
+			discordName: string;
+			prettyName: string;
+		};
+		offensivePlaybook: {
+			id: number;
+			team: string;
+			scheme?: string;
+		};
+		defensivePlaybook: {
+			id: number;
+			team: string;
+			scheme?: string;
+		};
+	};
+}
+
+// Helper function to format enum values, since I didn't include prettyName as value in the Playbook model:
+function formatEnumValue(enumValue: string) {
+	return enumValue
+		.toLowerCase()
+		.replace(/_/g, " ")
+		.replace(/\b(\w)/g, (char) => char.toUpperCase());
+}
+
+export default function TeamInfo({ team }: TeamInfoProps) {
 	return (
 		<Grid columns="3" gap="4">
 			<Card size="1" style={{ width: 350 }}>
@@ -11,7 +41,7 @@ export default async function TeamInfo() {
 							Manager
 						</Text>
 						<Text as="div" color="bronze" size="2">
-							Team.manager
+							{team.gm.prettyName}
 						</Text>
 					</Box>
 				</Flex>
@@ -21,7 +51,9 @@ export default async function TeamInfo() {
 					Offensive Playbook
 				</Text>
 				<Text as="div" color="bronze" size="2">
-					team.offensivePlaybook
+					{formatEnumValue(team.offensivePlaybook.team)}
+					{team.offensivePlaybook.scheme &&
+						` - ${team.offensivePlaybook.scheme}`}
 				</Text>
 			</Card>
 			<Card variant="surface">
@@ -29,7 +61,9 @@ export default async function TeamInfo() {
 					Defensive Playbook
 				</Text>
 				<Text as="div" color="bronze" size="2">
-					team defensive.Playbook
+					{formatEnumValue(team.defensivePlaybook.team)}
+					{team.defensivePlaybook.scheme &&
+						` - ${team.defensivePlaybook.scheme}`}
 				</Text>
 			</Card>
 		</Grid>
