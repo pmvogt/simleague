@@ -24,19 +24,20 @@ export default function TeamHeader({
 		>
 			<Flex gap="4" align="center">
 				<Box width="9" grow="1">
-					{team.logoUrl && (
-						<AspectRatio ratio={3 / 5}>
+					<AspectRatio ratio={3 / 2}>
+						{team.logoUrl && (
 							<Image
 								src={team.logoUrl}
 								alt={`Logo of ${team.prettyName}`}
-								width={88}
-								height={44}
+								layout="fill"
 								unoptimized={true} // Since these are local images, you might not need optimization
 							/>
-						</AspectRatio>
-					)}
+						)}
+					</AspectRatio>
 				</Box>
-				<Heading size="8">{team.prettyName}</Heading>
+				<Box width="100%" shrink="1">
+					<Heading size="8">{team.prettyName}</Heading>
+				</Box>
 			</Flex>
 		</Flex>
 	);
