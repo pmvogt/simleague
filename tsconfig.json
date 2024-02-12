@@ -26,7 +26,8 @@
 		"**/*.ts",
 		"**/*.tsx",
 		".next/types/**/*.ts",
-		"./types/global.d.ts"
+		"./types/global.d.ts",
+		"lib/supabaseLoader.mjs"
 	],
 	"exclude": ["node_modules"]
 }

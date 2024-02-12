@@ -8,6 +8,7 @@ export default function TeamHeader({
 }: {
 	team: {
 		bgColor: any;
+		logoUrl: string;
 		prettyName: string;
 	};
 }) {
@@ -22,18 +23,18 @@ export default function TeamHeader({
 			mt="4"
 		>
 			<Flex gap="4" align="center">
-				<Box width="9">
-					<AspectRatio ratio={16 / 9}>
-						<Image
-							src="/ari.png"
-							alt="team logo"
-							fill
-							style={{
-								objectFit: "cover",
-								borderRadius: "var(--radius-2)",
-							}}
-						/>
-					</AspectRatio>
+				<Box width="9" grow="1">
+					{team.logoUrl && (
+						<AspectRatio ratio={3 / 5}>
+							<Image
+								src={team.logoUrl}
+								alt={`Logo of ${team.prettyName}`}
+								width={88}
+								height={44}
+								unoptimized={true} // Since these are local images, you might not need optimization
+							/>
+						</AspectRatio>
+					)}
 				</Box>
 				<Heading size="8">{team.prettyName}</Heading>
 			</Flex>
