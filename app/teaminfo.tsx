@@ -1,4 +1,5 @@
 import { Avatar, Box, Card, Flex, Grid, Text } from "@radix-ui/themes";
+import { formatEnumValue } from '../lib/utils';
 
 interface TeamInfoProps {
 	team: {
@@ -20,14 +21,6 @@ interface TeamInfoProps {
 			scheme?: string;
 		};
 	};
-}
-
-// Helper function to format enum values, since I didn't include prettyName as value in the Playbook model:
-function formatEnumValue(enumValue: string) {
-	return enumValue
-		.toLowerCase()
-		.replace(/_/g, " ")
-		.replace(/\b(\w)/g, (char) => char.toUpperCase());
 }
 
 export default function TeamInfo({ team }: TeamInfoProps) {

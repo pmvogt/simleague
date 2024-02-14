@@ -1,4 +1,5 @@
 "use client";
+import { Manager } from "@prisma/client";
 import { Flex, Box, Heading, AspectRatio } from "@radix-ui/themes";
 
 import Image from "next/image";
@@ -10,6 +11,7 @@ export default function TeamHeader({
 		bgColor: any;
 		logoUrl: string;
 		prettyName: string;
+		gm: Manager,
 	};
 }) {
 	return (
